@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>無料相談 事前フォーム｜羅針堂｜戦略設計士</title>
+    <meta
+      name="description"
+      content="無料相談前に現在の状況を整理するための事前フォームです。回答後に日程予約ページをご案内します。"
+    />
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container">
+        <p class="brand">羅針堂｜戦略設計士</p>
+      </div>
+    </header>
+
+    <main class="main-content">
+      <div class="container narrow">
+        <section class="intro" aria-labelledby="page-title">
+          <h1 id="page-title">無料相談 事前フォーム</h1>
+          <p>
+            無料相談をご希望いただきありがとうございます。<br />
+            このフォームは、相談前に現在の状況を簡単に整理していただくためのものです。
+          </p>
+          <p>
+            羅針堂は、表面的な施策提案ではなく、経営判断の整理と構造設計を行っています。<br />
+            事業構造から原因を特定し、勝ち筋と優先順位を決めた上で、必要に応じて実行・改善まで伴走します。
+          </p>
+          <p>
+            回答後、日程予約ページをご案内します。<br />
+            所要時間は1〜2分程度です。
+          </p>
+        </section>
+
+        <section aria-labelledby="form-title" class="form-section">
+          <h2 id="form-title" class="section-title">入力フォーム</h2>
+
+          <p id="error-message" class="notice notice-error" role="alert" aria-live="polite" hidden></p>
+
+          <form id="consultation-form" novalidate>
+            <fieldset>
+              <legend>Q1. 現在の事業について、差し支えない範囲で教えてください。</legend>
+
+              <div class="field-group">
+                <label for="businessType">事業形態<span aria-hidden="true">*</span></label>
+                <select id="businessType" name="businessType" required>
+                  <option value="">選択してください</option>
+                  <option value="法人">法人</option>
+                  <option value="個人事業主">個人事業主</option>
+                  <option value="その他">その他</option>
+                </select>
+              </div>
+
+              <div class="field-group">
+                <label for="industry">業種<span aria-hidden="true">*</span></label>
+                <input id="industry" name="industry" type="text" required autocomplete="organization-title" />
+              </div>
+
+              <div class="field-group">
+                <label for="monthlySales">月商規模<span aria-hidden="true">*</span></label>
+                <select id="monthlySales" name="monthlySales" required>
+                  <option value="">選択してください</option>
+                  <option value="100万円未満">100万円未満</option>
+                  <option value="100万〜300万円">100万〜300万円</option>
+                  <option value="300万〜500万円">300万〜500万円</option>
+                  <option value="500万〜1,000万円">500万〜1,000万円</option>
+                  <option value="1,000万円以上">1,000万円以上</option>
+                  <option value="回答しない">回答しない</option>
+                </select>
+              </div>
+
+              <div class="field-group">
+                <label for="employeeCount">従業員数<span aria-hidden="true">*</span></label>
+                <select id="employeeCount" name="employeeCount" required>
+                  <option value="">選択してください</option>
+                  <option value="1名">1名</option>
+                  <option value="2〜5名">2〜5名</option>
+                  <option value="6〜10名">6〜10名</option>
+                  <option value="11名以上">11名以上</option>
+                  <option value="回答しない">回答しない</option>
+                </select>
+              </div>
+            </fieldset>
+
+            <fieldset>
+              <legend>Q2. 現在のお悩みに近いものを教えてください。（複数選択可）<span aria-hidden="true">*</span></legend>
+              <p class="assist">1つ以上選択してください。</p>
+              <div class="checkbox-list" role="group" aria-describedby="concerns-help">
+                <p id="concerns-help" class="sr-only">現在のお悩みに近い項目を1つ以上選択してください</p>
+                <label><input type="checkbox" name="concerns" value="何から優先して整えるべきか分からない" /> 何から優先して整えるべきか分からない</label>
+                <label><input type="checkbox" name="concerns" value="集客や導線に課題を感じている" /> 集客や導線に課題を感じている</label>
+                <label><input type="checkbox" name="concerns" value="売上はあるが、利益や余白が残りにくい" /> 売上はあるが、利益や余白が残りにくい</label>
+                <label><input type="checkbox" name="concerns" value="商品・サービスの見せ方や伝え方に迷いがある" /> 商品・サービスの見せ方や伝え方に迷いがある</label>
+                <label><input type="checkbox" name="concerns" value="価格設計や提案の仕方に迷いがある" /> 価格設計や提案の仕方に迷いがある</label>
+                <label><input type="checkbox" name="concerns" value="判断することが多く、頭の中が散らかっている" /> 判断することが多く、頭の中が散らかっている</label>
+                <label><input type="checkbox" name="concerns" value="自分一人で抱え続けることに限界を感じている" /> 自分一人で抱え続けることに限界を感じている</label>
+                <label><input type="checkbox" name="concerns" value="今のやり方を見直したいが、どこから手をつけるべきか分からない" /> 今のやり方を見直したいが、どこから手をつけるべきか分からない</label>
+                <label><input type="checkbox" name="concerns" value="その他" /> その他</label>
+              </div>
+              <p id="concerns-error" class="field-error" role="alert" hidden>少なくとも1項目を選択してください。</p>
+            </fieldset>
+
+            <fieldset>
+              <legend>Q3. 今回の相談で、近いものを教えてください。<span aria-hidden="true">*</span></legend>
+              <div class="radio-list">
+                <label><input type="radio" name="consultationGoal" value="まずは現状を整理したい" required /> まずは現状を整理したい</label>
+                <label><input type="radio" name="consultationGoal" value="一度話を聞いてみたい" /> 一度話を聞いてみたい</label>
+                <label><input type="radio" name="consultationGoal" value="導入や改善も視野に入れて相談したい" /> 導入や改善も視野に入れて相談したい</label>
+              </div>
+            </fieldset>
+
+            <fieldset>
+              <legend>Q4. ご希望の相談の進め方を教えてください。<span aria-hidden="true">*</span></legend>
+              <div class="radio-list">
+                <label><input type="radio" name="consultationStyle" value="オンライン相談（Zoom）を希望" required /> オンライン相談（Zoom）を希望</label>
+                <label><input type="radio" name="consultationStyle" value="先に文章で概要を伝えたい" /> 先に文章で概要を伝えたい</label>
+              </div>
+            </fieldset>
+
+            <fieldset>
+              <legend>Q5. 現在の状況や、特に整理したいことがあればご記入ください。<span aria-hidden="true">*</span></legend>
+              <div class="field-group">
+                <label for="notes" class="sr-only">現在の状況や整理したいこと</label>
+                <textarea
+                  id="notes"
+                  name="notes"
+                  rows="6"
+                  required
+                  placeholder="今どこで詰まっているか
+何を優先すべきか迷っているか
+売上・集客・利益・導線・価格設計など、どこに違和感があるか"
+                ></textarea>
+              </div>
+            </fieldset>
+
+            <button id="submit-button" type="submit" class="primary-button">内容を送信して日程予約へ進む</button>
+          </form>
+
+          <section id="completion" class="completion" aria-live="polite" hidden>
+            <h2>ご回答ありがとうございました。</h2>
+            <p>
+              内容を確認のうえ、無料相談の日程予約にお進みください。
+            </p>
+            <p>
+              初回相談では、現在の状況を整理しながら、<br />
+              どこに詰まりがあるのか、何を優先して考えるべきかを一緒に明確にしていきます。
+            </p>
+            <p>以下より、ご都合の良い日時をお選びください。</p>
+            <a id="timerex-link" class="primary-button" href="#" rel="noopener">無料相談の日程を予約する</a>
+            <p id="redirect-notice" class="assist"></p>
+          </section>
+        </section>
+      </div>
+    </main>
+
+    <script src="./script.js" defer></script>
+  </body>
+</html>

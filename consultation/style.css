@@ -1,0 +1,240 @@
+:root {
+  --color-bg: #f7f9fc;
+  --color-surface: #ffffff;
+  --color-text: #162338;
+  --color-muted: #4a5a73;
+  --color-primary: #1f355a;
+  --color-primary-hover: #27436f;
+  --color-border: #d7dfeb;
+  --color-error: #8a2030;
+  --space-1: 0.5rem;
+  --space-2: 0.75rem;
+  --space-3: 1rem;
+  --space-4: 1.5rem;
+  --space-5: 2rem;
+  --space-6: 3rem;
+  --radius: 10px;
+  --shadow: 0 4px 20px rgba(16, 33, 56, 0.05);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
+  line-height: 1.7;
+  color: var(--color-text);
+  background: var(--color-bg);
+}
+
+.container {
+  width: min(100% - 2rem, 980px);
+  margin: 0 auto;
+}
+
+.narrow {
+  max-width: 760px;
+}
+
+.site-header {
+  padding: var(--space-4) 0;
+  border-bottom: 1px solid var(--color-border);
+  background: var(--color-surface);
+}
+
+.brand {
+  margin: 0;
+  font-size: 1rem;
+  color: var(--color-primary);
+  letter-spacing: 0.02em;
+}
+
+.main-content {
+  padding: var(--space-5) 0 var(--space-6);
+}
+
+.intro,
+.form-section {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: var(--space-5);
+  box-shadow: var(--shadow);
+}
+
+.form-section {
+  margin-top: var(--space-4);
+}
+
+h1,
+h2,
+legend {
+  color: var(--color-primary);
+  line-height: 1.5;
+}
+
+h1 {
+  margin: 0 0 var(--space-3);
+  font-size: 1.6rem;
+}
+
+.section-title {
+  margin: 0 0 var(--space-4);
+  font-size: 1.25rem;
+}
+
+fieldset {
+  margin: 0 0 var(--space-5);
+  padding: var(--space-4);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+}
+
+legend {
+  padding: 0 var(--space-1);
+  font-weight: 600;
+}
+
+.field-group {
+  margin-top: var(--space-3);
+}
+
+label {
+  display: block;
+  margin-bottom: var(--space-1);
+  color: var(--color-text);
+}
+
+input[type="text"],
+select,
+textarea {
+  width: 100%;
+  padding: var(--space-2);
+  border-radius: 8px;
+  border: 1px solid var(--color-border);
+  font: inherit;
+  color: var(--color-text);
+  background: #fff;
+}
+
+textarea {
+  resize: vertical;
+  min-height: 8rem;
+}
+
+input:focus,
+select:focus,
+textarea:focus,
+.primary-button:focus-visible {
+  outline: 3px solid rgba(31, 53, 90, 0.28);
+  outline-offset: 1px;
+}
+
+.checkbox-list,
+.radio-list {
+  display: grid;
+  gap: var(--space-2);
+  margin-top: var(--space-2);
+}
+
+.checkbox-list label,
+.radio-list label {
+  display: flex;
+  gap: var(--space-2);
+  margin-bottom: 0;
+  align-items: flex-start;
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+  margin-top: 0.2rem;
+  flex: none;
+}
+
+.assist {
+  margin: var(--space-1) 0 0;
+  color: var(--color-muted);
+  font-size: 0.92rem;
+}
+
+.notice {
+  border-radius: 8px;
+  padding: var(--space-2) var(--space-3);
+  margin-bottom: var(--space-3);
+}
+
+.notice-error,
+.field-error {
+  color: var(--color-error);
+}
+
+.notice-error {
+  border: 1px solid #e5c4cb;
+  background: #fdf6f7;
+}
+
+.primary-button {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  min-height: 3rem;
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--color-primary);
+  border-radius: 999px;
+  background: var(--color-primary);
+  color: #fff;
+  font: inherit;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.primary-button:hover {
+  background: var(--color-primary-hover);
+}
+
+.primary-button[disabled] {
+  opacity: 0.72;
+  cursor: wait;
+}
+
+.completion {
+  margin-top: var(--space-3);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: var(--space-4);
+  background: #fbfcff;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+@media (max-width: 600px) {
+  .main-content {
+    padding-top: var(--space-4);
+  }
+
+  .intro,
+  .form-section {
+    padding: var(--space-4);
+  }
+
+  fieldset {
+    padding: var(--space-3);
+  }
+
+  h1 {
+    font-size: 1.4rem;
+  }
+}
