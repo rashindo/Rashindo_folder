@@ -78,26 +78,15 @@ async function sendFormData(payload) {
     throw new Error("FORM_ENDPOINT is not configured");
   }
 
-  const response = await fetch(CONFIG.FORM_ENDPOINT, {
+  await fetch(CONFIG.FORM_ENDPOINT, {
     method: "POST",
+    mode: "no-cors",
     headers: {
       "Content-Type": "text/plain;charset=utf-8"
     },
     body: JSON.stringify(payload),
     cache: "no-store"
   });
-
-  if (!response.ok) {
-    throw new Error(`Request failed: ${response.status}`);
-  }
-
-  const contentType = response.headers.get("content-type") || "";
-  if (contentType.includes("application/json")) {
-    const result = await response.json();
-    if (result.ok !== undefined && !result.ok) {
-      throw new Error(result.message || "Request failed");
-    }
-  }
 }
 
 function showCompletion() {
