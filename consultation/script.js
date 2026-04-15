@@ -22,7 +22,7 @@ const TEXTS = {
   sending: "送信中…",
   submit: "内容を送信して日程予約へ進む",
   error: "送信に失敗しました。時間を置いて再度お試しください。",
-  redirectNotice: "数秒後に予約ページへ移動します。移動しない場合は、下のボタンをご利用ください。"
+  redirectNotice: "数秒後に予約ページへ移動します。移動しない場合は、上記のボタンからお進みください。"
 };
 
 const form = document.getElementById("consultation-form");
