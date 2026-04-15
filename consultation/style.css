@@ -61,11 +61,12 @@ body {
   border: 1px solid var(--color-border);
   border-radius: var(--radius);
   padding: var(--space-5);
-  box-shadow: var(--shadow);
+  box-shadow: 0 2px 12px rgba(16, 33, 56, 0.04);
 }
 
 .form-section {
   margin-top: var(--space-4);
+  box-shadow: none;
 }
 
 h1,
@@ -87,14 +88,19 @@ h1 {
 
 fieldset {
   margin: 0 0 var(--space-5);
-  padding: var(--space-4);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius);
+  padding: calc(var(--space-4) - 0.2rem) var(--space-4) var(--space-4);
+  border: 1px solid #e3e9f2;
+  border-radius: 8px;
+  background: #fcfdff;
 }
 
 legend {
   padding: 0 var(--space-1);
-  font-weight: 600;
+  font-weight: 500;
+}
+
+.intro-lead {
+  margin-top: 0;
 }
 
 .field-group {
@@ -139,6 +145,10 @@ textarea:focus,
   margin-top: var(--space-2);
 }
 
+.checkbox-list {
+  gap: 0.45rem;
+}
+
 .checkbox-list label,
 .radio-list label {
   display: flex;
@@ -151,6 +161,11 @@ input[type="checkbox"],
 input[type="radio"] {
   margin-top: 0.2rem;
   flex: none;
+}
+
+.fieldset-concerns .checkbox-list label {
+  font-size: 0.96rem;
+  color: var(--color-muted);
 }
 
 .assist {

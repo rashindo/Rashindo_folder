@@ -1,19 +1,28 @@
 const DEFAULT_CONFIG = {
-  FORM_ENDPOINT: "https://example.com/your-gas-endpoint",
+  FORM_ENDPOINT: "https://script.google.com/macros/s/REPLACE_WITH_DEPLOY_ID/exec",
   TIMEREX_URL: "https://timerex.net/s/buntasome.bs_341a/0bab93ed",
-  AUTO_REDIRECT_DELAY_MS: 5000
+  AUTO_REDIRECT_DELAY_MS: 5000,
+  SOURCE: "line_richmenu_consultation"
 };
 
+function normalizeConfig(rawConfig) {
+  const endpointFromNested = rawConfig?.ENDPOINTS?.GAS_WEBAPP_URL;
+  return {
+    ...DEFAULT_CONFIG,
+    ...rawConfig,
+    FORM_ENDPOINT: endpointFromNested || rawConfig?.FORM_ENDPOINT || DEFAULT_CONFIG.FORM_ENDPOINT
+  };
+}
+
 const CONFIG = {
-  ...DEFAULT_CONFIG,
-  ...(window.CONSULTATION_CONFIG || {})
+  ...normalizeConfig(window.CONSULTATION_CONFIG || {})
 };
 
 const TEXTS = {
   sending: "送信中…",
   submit: "内容を送信して日程予約へ進む",
   error: "送信に失敗しました。時間を置いて再度お試しください。",
-  redirectNotice: "数秒後に予約ページへ移動します。移動しない場合は、下のボタンをご利用ください。"
+  redirectNotice: "数秒後に予約ページへ移動します。移動しない場合は、上記のボタンからお進みください。"
 };
 
 const form = document.getElementById("consultation-form");
@@ -23,6 +32,7 @@ const concernsError = document.getElementById("concerns-error");
 const completionSection = document.getElementById("completion");
 const timerexLink = document.getElementById("timerex-link");
 const redirectNotice = document.getElementById("redirect-notice");
+let isSubmitting = false;
 
 function getCheckedValues(name) {
   return [...form.querySelectorAll(`input[name="${name}"]:checked`)].map((el) => el.value);
@@ -35,6 +45,12 @@ function validateConcerns() {
   return isValid;
 }
 
+function validateTextFields() {
+  form.industry.value = form.industry.value.trim();
+  form.notes.value = form.notes.value.trim();
+  return form.industry.value.length > 0 && form.notes.value.length > 0;
+}
+
 function setSubmittingState(isSubmitting) {
   submitButton.disabled = isSubmitting;
   submitButton.textContent = isSubmitting ? TEXTS.sending : TEXTS.submit;
@@ -42,30 +58,35 @@ function setSubmittingState(isSubmitting) {
 
 function buildPayload() {
   return {
-    submittedAt: new Date().toISOString(),
+    timestamp: new Date().toISOString(),
     businessType: form.businessType.value.trim(),
     industry: form.industry.value.trim(),
-    monthlySales: form.monthlySales.value,
+    monthlyRevenue: form.monthlySales.value,
     employeeCount: form.employeeCount.value,
     concerns: getCheckedValues("concerns"),
-    consultationGoal: form.consultationGoal.value,
-    consultationStyle: form.consultationStyle.value,
-    notes: form.notes.value.trim()
+    consultationIntent: form.consultationGoal.value,
+    consultationPreference: form.consultationStyle.value,
+    consultationDetails: form.notes.value.trim(),
+    userAgent: window.navigator.userAgent || "",
+    referrer: document.referrer || "",
+    source: CONFIG.SOURCE
   };
 }
 
 async function sendFormData(payload) {
-  const response = await fetch(CONFIG.FORM_ENDPOINT, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify(payload)
-  });
-
-  if (!response.ok) {
-    throw new Error(`Request failed: ${response.status}`);
+  if (!CONFIG.FORM_ENDPOINT || CONFIG.FORM_ENDPOINT.includes("REPLACE_WITH_DEPLOY_ID")) {
+    throw new Error("FORM_ENDPOINT is not configured");
   }
+
+  await fetch(CONFIG.FORM_ENDPOINT, {
+    method: "POST",
+    mode: "no-cors",
+    headers: {
+      "Content-Type": "text/plain;charset=utf-8"
+    },
+    body: JSON.stringify(payload),
+    cache: "no-store"
+  });
 }
 
 function showCompletion() {
@@ -97,15 +118,22 @@ form.addEventListener("change", (event) => {
 
 form.addEventListener("submit", async (event) => {
   event.preventDefault();
-  clearError();
-
-  const isFormValid = form.reportValidity();
-  const isConcernsValid = validateConcerns();
-
-  if (!isFormValid || !isConcernsValid) {
+  if (isSubmitting) {
     return;
   }
 
+  clearError();
+  validateTextFields();
+
+  const isFormValid = form.reportValidity();
+  const isConcernsValid = validateConcerns();
+  const isTextFieldsValid = validateTextFields();
+
+  if (!isFormValid || !isConcernsValid || !isTextFieldsValid) {
+    return;
+  }
+
+  isSubmitting = true;
   setSubmittingState(true);
 
   try {
@@ -115,6 +143,7 @@ form.addEventListener("submit", async (event) => {
   } catch (error) {
     console.error(error);
     showError(TEXTS.error);
+    isSubmitting = false;
     setSubmittingState(false);
   }
 });
