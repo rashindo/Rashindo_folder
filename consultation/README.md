@@ -8,7 +8,22 @@
 - `consultation/index.html` : ページ本体（導入文、フォーム、完了表示）
 - `consultation/style.css` : 配色・余白・レスポンシブスタイル
 - `consultation/script.js` : バリデーション、送信処理、完了状態制御
-- `consultation/config.example.js` : 差し替え用設定サンプル
+- `consultation/config.js` : 本番設定（GAS URL / TimeRex URL / 自動遷移時間）
+- `consultation/config.example.js` : 差し替え用設定サンプル（公開不要）
+- `consultation/gas-sample.gs` : GAS側サンプルコード（公開不要）
+
+## 本番公開対象ファイル
+
+- `index.html`
+- `style.css`
+- `script.js`
+- `config.js`
+
+## 公開不要ファイル
+
+- `README.md`
+- `config.example.js`
+- `gas-sample.gs`
 
 ## ローカル確認方法
 
